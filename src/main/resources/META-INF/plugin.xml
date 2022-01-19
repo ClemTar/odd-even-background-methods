@@ -4,15 +4,36 @@
     <name>odd-even-background-methods</name>
     <vendor>clemtar</vendor>
 
+    <!-- Indicate this plugin can be loaded in all IntelliJ Platform-based products. -->
     <depends>com.intellij.modules.platform</depends>
 
+    <depends optional="true" config-file="php-annotator.xml">com.jetbrains.php</depends>
+
+    <!-- Text to display as description on Preferences/Settings | Plugin page -->
+    <description>
+        <![CDATA[
+      Adds a <i>Greeting</i> menu group anchored last in the <b>Main Menu</b>
+    ]]>
+    </description>
+    <change-notes>
+        <![CDATA[
+      <ul>
+        <li><b>2.0.0</b> Converted to Gradle project.</li>
+        <li><b>1.0</b> Release 2019.1 and earlier.</li>
+      </ul>
+    ]]>
+    </change-notes>
+
+    <!-- Text to display as company information on Preferences/Settings | Plugin page -->
+    <vendor url="https://www.coservit.fr">Coucou de Servicenav</vendor>
+
     <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="com.github.clemtar.oddevenbackgroundmethods.services.MyApplicationService"/>
-        <projectService serviceImplementation="com.github.clemtar.oddevenbackgroundmethods.services.MyProjectService"/>
+    <colorAndFontPanelFactory
+            implementation="com.github.clemtar.oddevenbackgroundmethods.settings.BackgroundMethodsPageFactory"/>
     </extensions>
 
+
     <applicationListeners>
-        <listener class="com.github.clemtar.oddevenbackgroundmethods.listeners.MyProjectManagerListener"
-                  topic="com.intellij.openapi.project.ProjectManagerListener"/>
+        <listener class="com.github.clemtar.oddevenbackgroundmethods.listeners.BackgroundMethodsSchemeListener" topic="com.intellij.openapi.editor.colors.EditorColorsListener"/>
     </applicationListeners>
 </idea-plugin>
